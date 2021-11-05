@@ -1,4 +1,5 @@
 .vscode
 tools/out
+tools/test
 *.mp4
 *.rar
