@@ -24,12 +24,21 @@ model.summary()
 crackImages = [f for f in listdir(f"{os.getcwd()}/tools/test/crack") if isfile(join(f"{os.getcwd()}/tools/test/crack", f))]
 noncrackImages = [f for f in listdir(f"{os.getcwd()}/tools/test/non-crack") if isfile(join(f"{os.getcwd()}/tools/test/non-crack", f))]
 
+c  = 0
+nc = 0
+
 for i in crackImages:
     if predictor2(f"{os.getcwd()}/tools/test/crack/{i}"):
+        c += 1
         print(f"crack/{i}: ", end="")
         print("Crack detected!")
 
 for i in noncrackImages:
     if predictor2(f"{os.getcwd()}/tools/test/non-crack/{i}"):
+        nc += 1
         print(f"non-crack/{i}: ", end="")
         print("Crack detected!")
+
+print("Results: ")
+print(f"{c}/{len(crackImages)} ({c/len(crackImages)*100:.2f}%) Detected in crack folder.")
+print(f"{nc}/{len(noncrackImages)} ({nc/len(noncrackImages)*100:.2f}%) Detected in non-crack folder.")
