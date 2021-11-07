@@ -16,7 +16,7 @@ def predictor2(location):
     else:
         return True
 
-model = load_model('model-crop.h5')
+model = load_model('models/model-crop.h5')
 
 model.summary()
 
