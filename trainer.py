@@ -51,7 +51,7 @@ cnn.compile(optimizer="adam",loss="binary_crossentropy",metrics=["accuracy"])
 
 cnn.summary()
 
-history= cnn.fit(x=training_set,validation_data=test_set,epochs=14)
+history= cnn.fit(x=training_set,validation_data=test_set,epochs=20)
 
 cnn.save("model-crop.h5")
 print("Saved model to disk")
