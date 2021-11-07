@@ -23,21 +23,18 @@ def main(argv):
         if (not os.path.exists(f"{outFolder}/non-crack")):
             os.mkdir(f"{outFolder}/non-crack")
 
+    defaultFrameSkips = 24
+    frameSkips = defaultFrameSkips
     frameNumber = 0
     frameCount = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
     while (cap.isOpened() and running):
-        # skip a head, dont need to many frames
+        # skip ahead, dont need to many frames
         cap.set(cv2.CAP_PROP_POS_FRAMES, frameNumber)
         ret, frame = cap.read()
 
         if (not ret):
             break
-
-        frameNumber += 12
-
-        if (frameNumber > frameCount):
-            frameNumber = frameCount
 
         crop = frame[800:1000, 600:1920-600]
 
@@ -50,12 +47,21 @@ def main(argv):
         elif (key == ord('z')):
             # Does not include crack
             nc += 1
+            frameSkips = defaultFrameSkips
             cv2.imwrite(f"./{outFolder}/non-crack/{videoName}-{nc}.jpg", crop)
 
         elif (key == ord('c')):
             # Includes crack
             c += 1
+            frameSkips = 1
             cv2.imwrite(f"./{outFolder}/crack/{videoName}-{c}.jpg", crop)
+        else:
+            frameSkips = defaultFrameSkips
+
+        frameNumber += frameSkips
+
+        if (frameNumber > frameCount):
+            frameNumber = frameCount
 
 
     cap.release()
