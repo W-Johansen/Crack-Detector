@@ -21,20 +21,20 @@ model = load_model('model-crop.h5')
 model.summary()
 
 
-crackImages = [f for f in listdir(f"{os.getcwd()}/tools/test/crack") if isfile(join(f"{os.getcwd()}/tools/test/crack", f))]
-noncrackImages = [f for f in listdir(f"{os.getcwd()}/tools/test/non-crack") if isfile(join(f"{os.getcwd()}/tools/test/non-crack", f))]
+crackImages = [f for f in listdir(f"{os.getcwd()}/Examples/crack") if isfile(join(f"{os.getcwd()}/Examples/crack", f))]
+noncrackImages = [f for f in listdir(f"{os.getcwd()}/Examples/non-crack") if isfile(join(f"{os.getcwd()}/Examples/non-crack", f))]
 
 c  = 0
 nc = 0
 
 for i in crackImages:
-    if predictor2(f"{os.getcwd()}/tools/test/crack/{i}"):
+    if predictor2(f"{os.getcwd()}/Examples/crack/{i}"):
         c += 1
         print(f"crack/{i}: ", end="")
         print("Crack detected!")
 
 for i in noncrackImages:
-    if predictor2(f"{os.getcwd()}/tools/test/non-crack/{i}"):
+    if predictor2(f"{os.getcwd()}/Examples/non-crack/{i}"):
         nc += 1
         print(f"non-crack/{i}: ", end="")
         print("Crack detected!")
