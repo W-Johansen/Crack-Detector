@@ -7,7 +7,7 @@ from tensorflow.keras.preprocessing import image
 from os import listdir
 from os.path import isfile, join
 
-def get_jetson_gstreamer_source(capture_width=1280, capture_height=720, display_width=1280, display_height=720, framerate=12, flip_method=0):
+def get_jetson_gstreamer_source(capture_width=1280, capture_height=720, display_width=1280, display_height=720, framerate=2, flip_method=0):
     """
     Return an OpenCV-compatible video source description that uses gstreamer to capture video from the camera on a Jetson Nano
     """
@@ -37,6 +37,7 @@ model.summary()
 video_capture = cv2.VideoCapture(get_jetson_gstreamer_source(), cv2.CAP_GSTREAMER)
 
 
+print("Analyzing camera feed...")
 while(video_capture.isOpened()):
     
     ret, frame = video_capture.read()
@@ -48,8 +49,8 @@ while(video_capture.isOpened()):
     
     if (predictor3(frame) == 1):
         dt = datetime.now()
-        dtString = dt_string = dt.strftime("%d/%m/%Y-%H:%M:%S")
-        print(f"Crack detected! {dtString}")
+        dtString = dt_string = dt.strftime("%d-%m-%Y_%H-%M-%S")
+        print(f"Crack detected! Saved as: {dtString}_crack.jpg")
         cv2.imwrite(f"{os.getcwd()}/Examples/out/{dtString}_crack.jpg", frame)
 
 
