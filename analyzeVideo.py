@@ -18,6 +18,9 @@ model = load_model('models/model2.h5')
 
 model.summary()
 
+if (not os.path.exists(f"{os.getcwd()}/Examples/out")):
+    os.mkdir(f"{os.getcwd()}/Examples/out")
+
 cap = cv2.VideoCapture(f"{os.getcwd()}/Examples/video-3.webm")
 
 fps = cap.get(cv2.CAP_PROP_FPS)

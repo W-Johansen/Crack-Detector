@@ -34,6 +34,9 @@ model = load_model('models/model2.h5')
 
 model.summary()
 
+if (not os.path.exists(f"{os.getcwd()}/Examples/out")):
+    os.mkdir(f"{os.getcwd()}/Examples/out")
+
 video_capture = cv2.VideoCapture(get_jetson_gstreamer_source(), cv2.CAP_GSTREAMER)
 
 
