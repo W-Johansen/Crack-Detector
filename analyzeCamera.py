@@ -21,7 +21,7 @@ def get_jetson_gstreamer_source(capture_width=1280, capture_height=720, display_
             )
 
 def predictor3(img):
-    test_image = cv2.resize(img, (128,128))
+    test_image = cv2.resize(img, (64,64))
     test_image = np.expand_dims(test_image, axis=0)
     result=model.predict(test_image)
     #training_set.class_indices
@@ -30,7 +30,7 @@ def predictor3(img):
     else:
         return True
 
-model = load_model('models/model-crop.h5')
+model = load_model('models/model2.h5')
 
 model.summary()
 
